@@ -1,9 +1,12 @@
 steps:
 - name: 'gcr.io/cloud-builders/gradle'
-  args: ['gradle spotbugsTest spotbugsMain']
+  id: 'SpotBugs'
+  args: ['spotbugsTest', 'spotbugsMain']
 - name: 'gcr.io/cloud-builders/gradle'
-  args: ['gradle test']
+  id: 'Tests'
+  args: ['test']
 - name: 'gcr.io/cloud-builders/gradle'
+  id: 'SonarQube'
   entrypoint: 'bash'
   args:
     - -c
