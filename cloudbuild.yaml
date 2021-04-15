@@ -10,9 +10,9 @@ steps:
   entrypoint: 'bash'
   args:
     - -c
-    - gradle sonarqube -DSONAR_TOKEN=$$SONAR_TOKEN
+    - gradle sonarqube -Dsonar.login=$$SONAR_TOKEN
   secretEnv: ['SONAR_TOKEN']
 availableSecrets:
   secretManager:
-    - versionName: projects/83509940274/secrets/SONAR_TOKEN/versions/1
+    - versionName: projects/83509940274/secrets/SONAR_TOKEN/versions/2
       env: 'SONAR_TOKEN'
