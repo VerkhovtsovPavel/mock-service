@@ -5,16 +5,12 @@ steps:
 - name: 'gcr.io/cloud-builders/gradle'
   id: 'Tests'
   args: ['test']
-- name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+- name: 'gradle:jre11'
+  id: 'SonarQube'
   entrypoint: 'bash'
   args:
-    - '-c'
-    - '/launch.sh'
-    - '-Dsonar.host.url=https://sonarcloud.io'
-    - '-Dsonar.login=$$SONAR_TOKEN'
-    - '-Dsonar.projectKey=VerkhovtsovPavel_mock-service'
-    - '-Dsonar.organization=verkhovtsovpavel'
-    - '-Dsonar.sources=.'
+    - -c
+    - gradle sonarqube -Dsonar.login=$$SONAR_TOKEN
   secretEnv: ['SONAR_TOKEN']
 availableSecrets:
   secretManager:
