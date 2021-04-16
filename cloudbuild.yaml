@@ -2,10 +2,12 @@ steps:
 - name: 'gcr.io/cloud-builders/gradle'
   id: 'SpotBugs'
   args: ['spotbugsTest', 'spotbugsMain']
+
 - name: 'gcr.io/cloud-builders/gradle'
   id: 'Tests'
   args: ['test']
-- name: 'gradle:6.5.1-jre11'
+
+- name: 'gradle:5.6.2-jdk11'
   id: 'SonarQube'
   entrypoint: 'bash'
   args:
