@@ -16,8 +16,8 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile	'org.springframework.cloud:spring-cloud-gcp-starter-firestore:1.2.7.RELEASE'
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	implementation 'org.springframework.cloud:spring-cloud-gcp-starter-firestore:1.2.7.RELEASE'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 sonarqube {
