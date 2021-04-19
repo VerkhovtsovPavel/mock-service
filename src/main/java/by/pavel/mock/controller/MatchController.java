@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @RestController
 public class MatchController {
@@ -23,19 +24,23 @@ public class MatchController {
 
     @GetMapping(MATCH_PATH + "/**")
     public ResponseEntity<String> matchGet(HttpServletRequest request) {
-        String path = fetchPath(request.getServletPath());
+        String path = fetchPath(request);
         Mapping mapping = storage.readByPath("get", path).orElse(NOT_FOUND_RESPONSE);
         return new ResponseEntity<>(mapping.getBody(), HttpStatus.valueOf(mapping.getResponseCode()));
     }
 
     @PostMapping(MATCH_PATH + "/**")
     public ResponseEntity<String> matchPost(HttpServletRequest request) {
-        String path = fetchPath(request.getServletPath());
+        String path = fetchPath(request);
         Mapping mapping = storage.readByPath("post", path).orElse(NOT_FOUND_RESPONSE);
         return new ResponseEntity<>(mapping.getBody(), HttpStatus.valueOf(mapping.getResponseCode()));
     }
 
-    private String fetchPath(String path) {
+    private String fetchPath(HttpServletRequest request) {
+        String path = request.getServletPath();
+        if(path.isEmpty()) {
+            path = request.getPathInfo();
+        }
         String matchingPath = path.substring(MATCH_PATH_LENGTH);
         return matchingPath.substring(matchingPath.indexOf('/'));
     }

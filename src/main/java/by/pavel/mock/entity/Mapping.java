@@ -1,5 +1,7 @@
 package by.pavel.mock.entity;
 
+import java.util.Objects;
+
 public class Mapping {
 
     private String url;
@@ -7,11 +9,10 @@ public class Mapping {
     private int responseCode;
     private String body;
 
-    public Mapping(String url, String method, int responseCode, String body) {
+    public Mapping(int responseCode, String body, String url, String method) {
+        this(responseCode, body);
         this.url = url;
         this.method = method;
-        this.responseCode = responseCode;
-        this.body = body;
     }
 
     public Mapping(int responseCode, String body) {
@@ -38,6 +39,22 @@ public class Mapping {
     }
 
     public Mapping normalize() {
-        return new Mapping(url.toLowerCase(), method.toLowerCase(), responseCode, body);
+        return new Mapping(responseCode, body, url.toLowerCase(), method.toLowerCase());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mapping mapping = (Mapping) o;
+        return responseCode == mapping.responseCode &&
+                Objects.equals(url, mapping.url) &&
+                Objects.equals(method, mapping.method) &&
+                Objects.equals(body, mapping.body);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(url, method, responseCode, body);
     }
 }

@@ -1,4 +1,4 @@
-package by.pavel.mock;
+package by.pavel.mock.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -13,13 +13,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UnmatchedControllerTests {
+class UnmatchedControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
-	public void unmatchedRequestShouldReturnSpecifiedMessage() throws Exception {
+	void unmatchedRequestShouldReturnSpecifiedMessage() throws Exception {
 		mockMvc.perform(get("/not_valid"))
 				.andDo(print())
 				.andExpect(status().isNotFound())
