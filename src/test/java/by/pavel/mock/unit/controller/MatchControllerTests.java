@@ -1,6 +1,6 @@
-package by.pavel.mock.controller;
+package by.pavel.mock.unit.controller;
 
-import by.pavel.mock.entity.Mapping;
+import by.pavel.mock.unit.entity.Mapping;
 import by.pavel.mock.storage.Storage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

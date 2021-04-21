@@ -1,4 +1,4 @@
-package by.pavel.mock.controller;
+package by.pavel.mock.unit.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

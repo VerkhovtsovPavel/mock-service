@@ -5,9 +5,9 @@ steps:
   args: ['-c', 'gradle', 'spotbugsTest', 'spotbugsMain']
 
 - name: 'gradle:5.6.2-jdk11'
-  id: 'Tests'
+  id: 'Unit Tests'
   entrypoint: 'bash'
-  args: ['-c', 'gradle', 'test']
+  args: ['-c', 'gradle', 'test', '--tests "by.pavel.mock.unit.*"']
 
 - name: 'gradle:5.6.2-jdk11'
   id: 'SonarQube'
@@ -21,8 +21,13 @@ steps:
   id: 'Deploy'
   entrypoint: 'bash'
   args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy build.gradle']
-timeout: '1600s'
 
+- name: 'gradle:5.6.2-jdk11'
+  id: 'API Tests'
+  entrypoint: 'bash'
+  args: ['-c', 'gradle', 'test', '--tests "by.pavel.mock.api.*"']
+
+timeout: '1600s'
 availableSecrets:
   secretManager:
     - versionName: projects/83509940274/secrets/SONAR_TOKEN/versions/2

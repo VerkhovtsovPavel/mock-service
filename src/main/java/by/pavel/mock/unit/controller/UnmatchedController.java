@@ -1,4 +1,4 @@
-package by.pavel.mock.controller;
+package by.pavel.mock.unit.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package by.pavel.mock.storage;
 
-import by.pavel.mock.entity.Mapping;
+import by.pavel.mock.unit.entity.Mapping;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

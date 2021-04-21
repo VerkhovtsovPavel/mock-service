@@ -1,6 +1,6 @@
 package by.pavel.mock.storage;
 
-import by.pavel.mock.entity.Mapping;
+import by.pavel.mock.unit.entity.Mapping;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ public class FirestoreStorage implements Storage {
 
     public Optional<Mapping> readByPath(String method, String path) {
        Optional<QuerySnapshot> result = Optional.ofNullable(resolveFuture(firestore.collection(COLLECTION).whereEqualTo("url", path.toLowerCase()).whereEqualTo("method", method.toLowerCase()).get()));
-       return result.map(x -> x.getDocuments().get(0).toObject(Mapping.class));
+       return result.flatMap(x -> x.getDocuments().stream().findFirst()).map(x -> x.toObject(Mapping.class));
     }
 
     public Mapping update(String id, Mapping data) {

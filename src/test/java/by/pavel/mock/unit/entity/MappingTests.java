@@ -1,4 +1,4 @@
-package by.pavel.mock.entity;
+package by.pavel.mock.unit.entity;
 
 import org.junit.jupiter.api.Test;
 
