@@ -46,7 +46,7 @@ public class Mapping {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Mapping mapping = (Mapping) o;
+        var mapping = (Mapping) o;
         return responseCode == mapping.responseCode &&
                 Objects.equals(url, mapping.url) &&
                 Objects.equals(method, mapping.method) &&

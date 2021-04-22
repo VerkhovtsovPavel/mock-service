@@ -3,7 +3,11 @@ package by.pavel.mock.storage;
 import by.pavel.mock.unit.entity.Mapping;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component
@@ -14,7 +18,7 @@ public class LocalStorage implements Storage{
 
     @Override
     public Optional<String> create(Mapping data) {
-        String nextId = String.valueOf(id.incrementAndGet());
+        var nextId = String.valueOf(id.incrementAndGet());
         storage.put(nextId, data);
         return Optional.of(nextId);
     }

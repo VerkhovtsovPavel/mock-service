@@ -24,14 +24,14 @@ public class MatchController {
     @GetMapping(MATCH_PATH + "/**")
     public ResponseEntity<String> matchGet(HttpServletRequest request) {
         String path = fetchPath(request);
-        Mapping mapping = storage.readByPath("get", path).orElse(NOT_FOUND_RESPONSE);
+        var mapping = storage.readByPath("get", path).orElse(NOT_FOUND_RESPONSE);
         return new ResponseEntity<>(mapping.getBody(), HttpStatus.valueOf(mapping.getResponseCode()));
     }
 
     @PostMapping(MATCH_PATH + "/**")
     public ResponseEntity<String> matchPost(HttpServletRequest request) {
         String path = fetchPath(request);
-        Mapping mapping = storage.readByPath("post", path).orElse(NOT_FOUND_RESPONSE);
+        var mapping = storage.readByPath("post", path).orElse(NOT_FOUND_RESPONSE);
         return new ResponseEntity<>(mapping.getBody(), HttpStatus.valueOf(mapping.getResponseCode()));
     }
 
@@ -40,7 +40,7 @@ public class MatchController {
         if(path.isEmpty()) {
             path = request.getPathInfo();
         }
-        String matchingPath = path.substring(MATCH_PATH_LENGTH);
+        var matchingPath = path.substring(MATCH_PATH_LENGTH);
         return matchingPath.substring(matchingPath.indexOf('/'));
     }
 }
