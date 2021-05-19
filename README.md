@@ -32,20 +32,21 @@ public class Mapping {
     private String method;
     private int responseCode;
     private String body;
+    private String contentType;
 }    
 ```
 JSON:
 ```json
-{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\"item\": 1}
+{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\\"item\": 1}", contentType: "application/json"}
 ```
 
 # Examples
 
 Add new mapping
 
- > curl --header "Content-Type: application/json" \\
-  --request POST \\
-  --data '{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\"item\": 1}"}' \\
+ > curl --header "Content-Type: application/json"
+  --request POST
+  --data '{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\\"item\\": 1}", "contentType": "application.json"}'
   ${SERVER_URL}/mappings/
 
 Receive mocked response

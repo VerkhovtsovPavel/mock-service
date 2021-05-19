@@ -8,6 +8,12 @@ public class Mapping {
     private String method;
     private int responseCode;
     private String body;
+    private String contentType;
+
+    public Mapping(int responseCode, String body, String url, String method, String contentType) {
+        this(responseCode, body, url, method);
+        this.contentType = contentType;
+    }
 
     public Mapping(int responseCode, String body, String url, String method) {
         this(responseCode, body);
@@ -36,6 +42,10 @@ public class Mapping {
 
     public String getMethod() {
         return method;
+    }
+
+    public String getContentType() {
+        return contentType;
     }
 
     public Mapping normalize() {

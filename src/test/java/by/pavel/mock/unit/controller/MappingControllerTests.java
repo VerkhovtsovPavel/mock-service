@@ -34,7 +34,7 @@ class MappingControllerTests {
     @Autowired
     private Gson gson;
 
-    private final Mapping testMapping = new Mapping(200, "{item:1}", "/item/1", "GET");
+    private final Mapping testMapping = new Mapping(200, "{item:1}", "/item/1", "GET", "application/json");
 
     @Test
     void getMappingsFromEmptyStorage() throws Exception {
@@ -101,6 +101,6 @@ class MappingControllerTests {
         mockMvc.perform(get("/mappings/invalid"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"url\":null,\"method\":null,\"responseCode\":404,\"body\":\"Mapping not found\"}"));
+                .andExpect(content().string("{\"url\":null,\"method\":null,\"responseCode\":404,\"body\":\"Mapping not found\",\"contentType\":null}"));
     }
 }
