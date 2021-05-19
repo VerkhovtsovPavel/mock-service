@@ -37,7 +37,7 @@ public class Mapping {
 ```
 JSON:
 ```json
-{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\\"item\": 1}", contentType: "application/json"}
+{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\"item\": 1}", "contentType": "application/json"}
 ```
 
 # Examples
