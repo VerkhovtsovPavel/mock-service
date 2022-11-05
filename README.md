@@ -47,12 +47,12 @@ Add new mapping
  > curl --header "Content-Type: application/json"
   --request POST
   --data '{"url": "/item/1", "method":"GET", "responseCode": 200, "body": "{\\"item\\": 1}", "contentType": "application.json"}'
-  ${SERVER_URL}/mappings/
+  `${SERVER_URL}`/mappings/
 
 Receive mocked response
 
->  curl ${SERVER_URL}/match/item/1
+>  curl `${SERVER_URL}`/match/item/1
 
 Delete mapping
 
->  curl --request DELETE ${SERVER_URL}/mappings/${MAPPING_ID}
+>  curl --request DELETE `${SERVER_URL}`/mappings/`${MAPPING_ID}`
